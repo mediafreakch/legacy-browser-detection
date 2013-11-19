@@ -40,9 +40,9 @@ Embed browserdetection.js in the head of your html page. The following methods w
 
 ## Utils
 
-Utils is an object the provides additional tools to handle different browsers. The following methods can be used on the browserDetection. Utils object:
+Utils is an object that provides additional tools to handle different browsers. The following methods can be used on the ```browserDetection.Utils``` object:
 
-- __isLegacy([browserobject])__ *returns Boolean*
+- __isLegacy([browsers])__ *returns Boolean*
 
    _Arguments: object containing the browsers that you consider as old_ (optional)
 
