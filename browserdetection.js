@@ -1,8 +1,7 @@
 // Browser Detection Module 
 // ------------------------
 // A derivative work by mediafreakch based on http://browser-update.org/
-// README: http://github.com/mediafreakch/browserdetection/README
-// LICENSE: http://github.com/mediafreakch/browserdetection/LICENSE
+// Project Github page: https://github.com/mediafreakch/browserdetection
 
 var browserDetection = (function () {
     var browser, os;
