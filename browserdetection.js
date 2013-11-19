@@ -104,9 +104,10 @@ var browserDetection = (function () {
         }
 
         var runDetection = function (config, fn) {
-            var cookie = 'browserDetected=1';
+            var legacyBrowsers = (config.legacyBrowsers ? config.legacyBrowsers : LEGACYVERSIONS),
+                cookie = 'browserDetected=1';
 
-            if ((!isLegacyBrowser(config.legacyBrowsers) || document.cookie.indexOf(cookie) > -1) && !config.debug)
+            if ((!isLegacyBrowser(legacyBrowsers) || document.cookie.indexOf(cookie) > -1) && !config.debug)
                 return;
 
             if (config.rememberUser) {
