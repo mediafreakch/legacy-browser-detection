@@ -18,7 +18,7 @@ Operating systems currently beeing recognised include:
 
 # Usage
 
-Embed browserdetection.js in the head of your html page. The following methods will be available immediately on an object named browserDetection:
+Embed browserdetection.js in the head of your html page. The following methods will be available immediately on an object named `browserDetection`:
 
 ## Methods
 
