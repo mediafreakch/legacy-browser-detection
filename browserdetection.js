@@ -93,7 +93,8 @@ var browserDetection = (function () {
             o: 11,
             s: 4,
             n: 10
-        };
+        },
+            COOKIENAME = "browserDetected=1";
 
         var isLegacyBrowser = function (config) {
             var config = config || LEGACYVERSIONS;
@@ -102,37 +103,41 @@ var browserDetection = (function () {
         }
 
         var runDetection = function (config, fn) {
-            var legacyBrowsers = (config.legacyBrowsers ? config.legacyBrowsers : LEGACYVERSIONS),
-                cookie = 'browserDetected=1';
+            var legacyBrowsers = (config.legacyBrowsers ? config.legacyBrowsers : LEGACYVERSIONS);
 
-            if ((!isLegacyBrowser(legacyBrowsers) || document.cookie.indexOf(cookie) > -1) && !config.debug)
+            if ((!isLegacyBrowser(legacyBrowsers) || document.cookie.indexOf(COOKIENAME) > -1) && !config.debug)
                 return;
 
             if (config.rememberUser) {
-                var intv = config.rememberInterval,
-                    exp;
-
-                if (intv && intv > 0)
-                    exp = ';expires=' + new Date(new Date().getTime() + 1000 * 3600 * 24 * intv).toUTCString();
-                else
-                    exp = '';
-
-                document.cookie = cookie + ';path=/' + exp;
+                setReminderCookie(config.reminderInterval || 0);
             }
 
             // execute callback if provided
             if (typeof (fn) === 'function')
                 fn(os, browser.name, browser.v)
             else
-            // or launch default notification
+                // or launch default notification
                 console.log('%cYou are using ' + browser.name + ' ' + browser.v + ' on ' + os, 'font-weight:bold;color:blue', '\nThe owner of this website says that this is an old browser that shouldn\'t be used anymore');
+        }
+        
+        var setReminderCookie = function (intv) {
+            var exp;
+
+            if (intv && intv > 0)
+                exp = ';expires=' + new Date(new Date().getTime() + 1000 * 3600 * 24 * intv).toUTCString();
+            else
+                exp = '';
+
+            document.cookie = COOKIENAME + ';path=/' + exp;
         }
 
         // the facade for the submodule
         return {
-            LEGACYVERSIONS: LEGACYVERSIONS,
+            COOKIENAME: COOKIENAME,
             isLegacy: isLegacyBrowser,
-            notify: runDetection
+            LEGACYVERSIONS: LEGACYVERSIONS,
+            notify: runDetection,
+            setReminder: setReminderCookie
         };
     }(browser, os))
 
