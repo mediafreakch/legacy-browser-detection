@@ -44,7 +44,7 @@ Utils is an object that provides additional tools to handle different browsers. 
 
 - __setReminder([interval])__ void
 
-Allows you to manually set a cookie for a) the session if no interval is passed or b) for the amount of days passed. The notification won't be triggered again, until the cookie expires. This can be handy for example if you want to always show a notification, except for certain browser- or OS-versions.
+   Allows you to manually set a cookie for a) the session if no interval is passed or b) for the amount of days     passed. The notification won't be triggered again, until the cookie expires. This can be handy for example if you want to always show a notification, except for certain browser- or OS-versions.
 
 
 - __isLegacy([browsers])__ *returns Boolean*
