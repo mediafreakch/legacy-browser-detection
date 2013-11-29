@@ -19,8 +19,7 @@ var browserDetection = (function () {
             x: 'Other'
         };
 
-        if (/bot|googlebot|slurp|mediapartners|adsbot|silk|android|phone|bingbot|google web preview|like firefox|chromeframe|seamonkey|opera mini|min|meego|netfront|moblin|maemo|arora|camino|flot|k-meleon|fennec|kazehakase|galeon|android|mobile|iphone|ipod|ipad|epiphany|rekonq|symbian|webos/i.test(ua)) n = "x";
-        else if (/Trident.(\d+\.\d+)/i.test(ua)) n = 'io';
+        if (/Trident.(\d+\.\d+)/i.test(ua)) n = 'io';
         else if (/MSIE.(\d+\.\d+)/i.test(ua)) n = 'i';
         else if (/Chrome.(\d+\.\d+)/i.test(ua)) n = 'c';
         else if (/Firefox.(\d+\.\d+)/i.test(ua)) n = 'f';
