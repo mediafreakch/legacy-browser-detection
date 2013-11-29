@@ -7,7 +7,7 @@ var browserDetection = (function () {
     var browser, os;
 
     // get the browser details
-    var getBrowser = function () {
+    var getBrowser = function() {
         var n, v, ua = navigator.userAgent;
         var names = {
             i: 'Internet Explorer',
@@ -28,17 +28,19 @@ var browserDetection = (function () {
         else if (/Opera.*Version.(\d+\.?\d+)/i.test(ua)) n = 'o';
         else if (/Opera.(\d+\.?\d+)/i.test(ua)) n = 'o';
         else if (/Netscape.(\d+)/i.test(ua)) n = 'n';
-        else return {
-            n: 'x',
-            v: 0,
-            t: names[n]
-        };
+        else
+            return {
+                n: 'x',
+                v: 0,
+                t: names[n]
+            };
 
-        if (n == 'x') return {
-            n: 'x',
-            v: 0,
-            t: names[n]
-        };
+        if (n == 'x')
+            return {
+                n: 'x',
+                v: 0,
+                t: names[n]
+            };
 
         v = Number(RegExp.$1);
 
@@ -65,8 +67,8 @@ var browserDetection = (function () {
             v: v,
             t: names[n] + ' ' + v,
             name: names[n]
-        }
-    }
+        };
+    };
 
     browser = getBrowser();
 
