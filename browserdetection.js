@@ -8,7 +8,7 @@ var browserDetection = (function () {
 
     // get the browser details
     var getBrowser = function () {
-        var n, v, t, ua = navigator.userAgent;
+        var n, v, ua = navigator.userAgent;
         var names = {
             i: 'Internet Explorer',
             f: 'Firefox',
@@ -71,7 +71,7 @@ var browserDetection = (function () {
     browser = getBrowser();
 
     // get the OS
-    var getOS = function () {
+    var getOS = function() {
         var av = navigator.appVersion,
             os;
 
@@ -81,12 +81,12 @@ var browserDetection = (function () {
         else if (av.indexOf("Linux") != -1) os = 'Linux';
         else os = "Unknown OS";
         return os;
-    }
+    };
 
     os = getOS();
 
     // define a submodule that contains the logic to handle legacy browsers
-    var Utils = (function (browser, os) {
+    var Utils = (function(browser, os) {
         var LEGACYVERSIONS = {
             i: 9,
             f: 4,
@@ -96,13 +96,13 @@ var browserDetection = (function () {
         },
             COOKIENAME = "browserDetected=1";
 
-        var isLegacyBrowser = function (config) {
+        var isLegacyBrowser = function(config) {
             var config = config || LEGACYVERSIONS;
 
             return (browser.n == 'x' || browser.n == 'c' || browser.v > config[browser.n]) ? false : true;
-        }
+        };
 
-        var runDetection = function (config, fn) {
+        var runDetection = function(config, fn) {
             var legacyBrowsers = (config.legacyBrowsers ? config.legacyBrowsers : LEGACYVERSIONS);
 
             if ((!isLegacyBrowser(legacyBrowsers) || document.cookie.indexOf(COOKIENAME) > -1) && !config.debug)
@@ -113,14 +113,11 @@ var browserDetection = (function () {
             }
 
             // execute callback if provided
-            if (typeof (fn) === 'function')
-                fn(os, browser.name, browser.v)
-            else
-                // or launch default notification
-                console.log('%cYou are using ' + browser.name + ' ' + browser.v + ' on ' + os, 'font-weight:bold;color:blue', '\nThe owner of this website says that this is an old browser that shouldn\'t be used anymore');
-        }
-        
-        var setReminderCookie = function (intv) {
+            if (typeof(fn) === 'function')
+                fn(os, browser.name, browser.v);
+        };
+
+        var setReminderCookie = function(intv) {
             var exp;
 
             if (intv && intv > 0)
@@ -129,7 +126,7 @@ var browserDetection = (function () {
                 exp = '';
 
             document.cookie = COOKIENAME + ';path=/' + exp;
-        }
+        };
 
         // the facade for the submodule
         return {
@@ -139,22 +136,22 @@ var browserDetection = (function () {
             notify: runDetection,
             setReminder: setReminderCookie
         };
-    }(browser, os))
+    }(browser, os));
 
     // the facade for the core module
     return {
         Utils: Utils,
-        getBrowser: function () {
+        getBrowser: function() {
             return browser.t;
         },
-        getBrowserName: function () {
+        getBrowserName: function() {
             return browser.name;
         },
-        getBrowserVersion: function () {
+        getBrowserVersion: function() {
             return browser.v;
         },
-        getOS: function () {
+        getOS: function() {
             return os;
         }
-    }
+    };
 }())
