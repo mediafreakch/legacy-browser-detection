@@ -42,10 +42,6 @@ Embed browserdetection.js in the head of your html page. The following methods w
 
 Utils is an object that provides additional tools to handle different browsers. The following methods can be used on the ```browserDetection.Utils``` object:
 
-- __setReminder([interval])__ void
-
-   Allows you to manually set a cookie for a) the session if no interval is passed or b) for the amount of days     passed. The notification won't be triggered again, until the cookie expires. This can be handy for example if you want to always show a notification, except for certain browser- or OS-versions.
-
 
 - __isLegacy([browsers])__ *returns Boolean*
 
@@ -75,6 +71,10 @@ Utils is an object that provides additional tools to handle different browsers. 
    - ```function(os, browsername, browserversion) {} ```
    
       A function that will be executed when a legacy browser is detected. Operating system, Browsername and Browserversion will be passed as arguments
+      
+- __setReminder([interval])__ void
+
+   Allows you to manually set a cookie for a) the session if no interval is passed or b) for the amount of days     passed. The notification won't be triggered again, until the cookie expires. This can be handy for example if you want to always show a notification, except for certain browser- or OS-versions.
 
 ### Default legacy versions
 
